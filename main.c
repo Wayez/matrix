@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "ml6.h"
 #include "display.h"
@@ -8,14 +9,22 @@
 #include "matrix.h"
 
 int main() {
-
+	
   screen s;
+  color c;
+  c.red = MAX_COLOR;
+  c.blue = 0;
+  c.green = 0;
   struct matrix *edges;
   struct matrix *transform;
+  /**
   struct matrix *test;
   struct matrix *test2;
   struct matrix *test3;
   struct matrix *test4;
+  struct matrix *test5;
+  struct matrix *test6;
+  struct matrix *test7;
 
   edges = new_matrix(4, 4);
   transform = new_matrix(4, 4);
@@ -23,6 +32,9 @@ int main() {
   test2 = new_matrix(3, 2);
   test3 = make_translate(1.0, 2.0, 3.0);
   test4 = make_scale(1.0, 2.0, 3.0);
+  test5 = make_rotX(M_PI);
+  test6 = make_rotY(M_PI);
+  test7 = make_rotZ(M_PI);
   
   test->m[0][0]=1;
   test->m[0][1]=2;
@@ -37,6 +49,7 @@ int main() {
   test2->m[1][1]=50;
   test2->m[2][0]=30;
   test2->m[2][1]=60;
+  
   
   ident(edges);
   scalar_mult(5, edges);
@@ -63,10 +76,44 @@ int main() {
   print_matrix(test4);
   printf("\n");
   
+  print_matrix(test5);
+  printf("\n");
+  
+  print_matrix(test6);
+  printf("\n");
+  
+  print_matrix(test7);
+  printf("\n");
+  
   free_matrix( transform );
   free_matrix( edges );
   free_matrix( test );
   free_matrix( test2 );
   free_matrix( test3 );
   free_matrix( test4 );
+  free_matrix( test5 );
+  free_matrix( test6 );
+  free_matrix( test7 );
+  **/
+  edges = new_matrix(4, 4);
+  transform = new_matrix(4, 4);
+  
+  add_edge(edges, 10, 25, 0, 25, 10, 0);
+  add_edge(edges, 25, 10, 0, 10, 25, 0);
+  add_edge(edges, 10, 25, 0, 25, 25, 0);
+  add_edge(edges, 25, 25, 0, 10, 25, 0);
+  
+  add_edge(edges, XRES / 2, 0, 0, XRES, YRES / 2, 0);
+  add_edge(edges, XRES, YRES / 2, 0, XRES / 2, YRES, 0);
+  add_edge(edges, XRES / 2, YRES, 0, 0, YRES / 2, 0);
+  add_edge(edges, 0, YRES / 2, 0, XRES / 2, 0, 0);
+  
+  print_matrix( edges );
+  
+  draw_lines(edges, s, c);
+  
+  save_ppm(s, "matrix.ppm");
+  save_extension(s, "matrix.png");
+  free_matrix( transform );
+  free_matrix( edges );
 }  
