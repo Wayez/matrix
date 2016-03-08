@@ -98,20 +98,55 @@ int main() {
   edges = new_matrix(4, 4);
   transform = new_matrix(4, 4);
   
-  add_edge(edges, 10, 25, 0, 25, 10, 0);
-  add_edge(edges, 25, 10, 0, 10, 25, 0);
-  add_edge(edges, 10, 25, 0, 25, 25, 0);
-  add_edge(edges, 25, 25, 0, 10, 25, 0);
+  //add_edge(edges, 10, 25, 0, 25, 10, 0);
+  //add_edge(edges, 25, 10, 0, 10, 25, 0);
+  //add_edge(edges, 10, 25, 0, 25, 25, 0);
+  //add_edge(edges, 25, 25, 0, 10, 25, 0);
   
   add_edge(edges, XRES / 2, 0, 0, XRES, YRES / 2, 0);
   add_edge(edges, XRES, YRES / 2, 0, XRES / 2, YRES, 0);
   add_edge(edges, XRES / 2, YRES, 0, 0, YRES / 2, 0);
   add_edge(edges, 0, YRES / 2, 0, XRES / 2, 0, 0);
+  draw_lines(edges, s , c);
+  //struct matrix *rZ = new_matrix(4, 4);
+  //rZ = make_rotZ(M_PI / 2);
+  //matrix_mult(rZ, edges);
+  //draw_lines(edges, s, c);
+  int i;
+  for(i = 3; i < 180; i++){
+    struct matrix *rZ = new_matrix(4, 4);
+    rZ = make_rotZ(90);
+    matrix_mult(rZ, edges);
+    draw_lines(edges, s, c);
+    struct matrix *scal = new_matrix(4, 4);
+    scal = make_scale((i * i - 1) / i,  1, 1);
+    matrix_mult(scal, edges); 
+    draw_lines(edges, s, c);
+  }
+   add_edge(edges, XRES / 2, 0, 0, XRES, YRES / 2, 0);
+  add_edge(edges, XRES, YRES / 2, 0, XRES / 2, YRES, 0);
+  add_edge(edges, XRES / 2, YRES, 0, 0, YRES / 2, 0);
+  add_edge(edges, 0, YRES / 2, 0, XRES / 2, 0, 0);
+  draw_lines(edges, s , c);
+  //struct matrix *rZ = new_matrix(4, 4);
+  //rZ = make_rotZ(M_PI / 2);
+  //matrix_mult(rZ, edges);
+  //draw_lines(edges, s, c);
+  int i;
+  for(i = 3; i < 180; i++){
+    struct matrix *rZ = new_matrix(4, 4);
+    rZ = make_rotZ(90);
+    matrix_mult(rZ, edges);
+    draw_lines(edges, s, c);
+    struct matrix *scal = new_matrix(4, 4);
+    scal = make_scale((i * i - 1) / i,  1, 1);
+    matrix_mult(scal, edges); 
+    draw_lines(edges, s, c);
+  }
+  //print_matrix( edges );
   
-  print_matrix( edges );
-  
-  draw_lines(edges, s, c);
-  
+  //draw_lines(edges, s, c);
+  display(s);
   save_ppm(s, "matrix.ppm");
   save_extension(s, "matrix.png");
   free_matrix( transform );

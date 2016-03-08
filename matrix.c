@@ -243,9 +243,9 @@ angle of rotation and Z as the axis of rotation.
 struct matrix * make_rotZ(double theta) {
 	struct matrix *ans = new_matrix(4, 4);
 	ident(ans);
-	ans->m[0][0] = cos(theta);
-	ans->m[0][1] = -sin(theta);
-	ans->m[1][0] = sin(theta);
-	ans->m[1][1] = cos(theta);
+	ans->m[0][0] = cos(theta * M_PI / 180);
+	ans->m[0][1] = -sin(theta * M_PI / 180);
+	ans->m[1][0] = sin(theta * M_PI / 180);
+	ans->m[1][1] = cos(theta * M_PI / 180);
 	return ans;
 }
