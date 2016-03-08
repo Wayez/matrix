@@ -57,9 +57,9 @@ void draw_lines( struct matrix * points, screen s, color c) {
 		x1 = (int)points->m[0][col + 1];
 		y1 = (int)points->m[1][col + 1];
 		draw_line(x0, y0, x1, y1, s, c);
-		printf("x0: %d, y0: %d, x1: %d, y1: %d\n", x0, y0, x1, y1);
+		//printf("x0: %d, y0: %d, x1: %d, y1: %d\n", x0, y0, x1, y1);
 	}
-	printf("\n");
+	//printf("\n");
 }
 
 

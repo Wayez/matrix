@@ -211,10 +211,10 @@ angle of rotation and X as the axis of rotation.
 struct matrix * make_rotX(double theta) {
 	struct matrix *ans = new_matrix(4, 4);
 	ident(ans);
-	ans->m[1][1] = cos(theta);
-	ans->m[1][2] = -sin(theta);
-	ans->m[2][1] = sin(theta);
-	ans->m[2][2] = cos(theta);
+	ans->m[1][1] = cos(theta * M_PI / 180);
+	ans->m[1][2] = -sin(theta * M_PI / 180);
+	ans->m[2][1] = sin(theta * M_PI / 180);
+	ans->m[2][2] = cos(theta * M_PI / 180);
 	return ans;
 }
 
@@ -227,10 +227,10 @@ angle of rotation and Y as the axis of rotation.
 struct matrix * make_rotY(double theta) {
 	struct matrix *ans = new_matrix(4, 4);
 	ident(ans);
-	ans->m[0][0] = cos(theta);
-	ans->m[0][2] = -sin(theta);
-	ans->m[2][0] = sin(theta);
-	ans->m[2][2] = cos(theta);
+	ans->m[0][0] = cos(theta * M_PI / 180);
+	ans->m[0][2] = -sin(theta * M_PI / 180);
+	ans->m[2][0] = sin(theta * M_PI / 180);
+	ans->m[2][2] = cos(theta * M_PI / 180);
 	return ans;
 }
 
